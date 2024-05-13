@@ -42,7 +42,7 @@ export default defineType({
     defineField({
       name: 'group',
       title: 'Group',
-      type: 'text',
+      type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({
