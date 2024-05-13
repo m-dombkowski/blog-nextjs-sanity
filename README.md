@@ -4,10 +4,6 @@ This starter is a statically generated blog that uses [Next.js][nextjs] for the 
 
 The Studio connects to Sanity Content Lake, which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
 
-[![Deploy with Vercel](https://vercel.com/button)][vercel-deploy]
-
-> [!NOTE]  
-> This starter uses the Next.js [Pages Router](https://nextjs.org/docs/pages). [An App Router example is also available.](https://github.com/vercel/next.js/tree/canary/examples/cms-sanity#readme)
 
 ## Features
 
