@@ -1,9 +1,9 @@
+import NewsletterSignup from 'components/NewsletterSignup'
 import Image from 'next/image'
 import Link from 'next/link'
 import { memo, useSyncExternalStore } from 'react'
 
 import cover from './cover.png'
-import NewsletterSignup from 'components/NewsletterSignup'
 
 const subscribe = () => () => {}
 
