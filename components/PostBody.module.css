@@ -1,5 +1,5 @@
 .portableText {
-  @apply text-lg leading-relaxed;
+  @apply text-lg leading-relaxed max-w-screen-sm;
 }
 
 .portableText p,
@@ -7,6 +7,14 @@
 .portableText ol,
 .portableText blockquote {
   @apply my-6;
+}
+
+.portableText ul {
+  @apply list-disc pl-10;
+}
+
+.portableText ol {
+  @apply list-decimal pl-10;
 }
 
 .portableText h2 {
