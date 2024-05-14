@@ -1,5 +1,5 @@
 import Avatar from 'components/AuthorAvatar'
-import CoverImage from 'components/CoverImage'
+// import CoverImage from 'components/CoverImage'
 import Date from 'components/PostDate'
 import type { Post } from 'lib/sanity.queries'
 import Link from 'next/link'
@@ -28,14 +28,14 @@ export default function PostPreview({
           {title}
         </Link>
       </h3>
-      <div className="mb-4 text-lg flex gap-5">
+      <div className="mb-4 text-lg flex gap-5 flex-col mt-10">
         <Date dateString={date} />
         <p>{group}</p>
       </div>
       {/* {excerpt && (
         <p className="mb-4 text-lg leading-relaxed text-pretty">{excerpt}</p>
       )} */}
-      {author && <Avatar name={author.name} picture={author.picture} />}
+      {/* {author && <Avatar name={author.name} picture={author.picture} />} */}
     </div>
   )
 }

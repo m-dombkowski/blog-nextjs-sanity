@@ -1,5 +1,5 @@
 import Avatar from 'components/AuthorAvatar'
-import CoverImage from 'components/CoverImage'
+// import CoverImage from 'components/CoverImage'
 import Date from 'components/PostDate'
 import PostTitle from 'components/PostTitle'
 import type { Post } from 'lib/sanity.queries'
@@ -21,9 +21,9 @@ export default function PostHeader(
         <p>{group}</p>
       </div>
 
-      <div className="mb-8 sm:mx-0 md:mb-16">
+      {/* <div className="mb-8 sm:mx-0 md:mb-16">
         <CoverImage title={title} image={coverImage} priority slug={slug} />
-      </div>
+      </div> */}
       <div className="mx-auto max-w-2xl">
         <div className="mb-6 block md:hidden">
           {author && <Avatar name={author.name} picture={author.picture} />}
