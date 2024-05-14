@@ -34,7 +34,7 @@ export default defineType({
       type: 'slug',
       options: {
         source: 'title',
-        maxLength: 150,
+        maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
