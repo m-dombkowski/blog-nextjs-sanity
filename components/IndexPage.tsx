@@ -38,7 +38,7 @@ export default function IndexPage(props: IndexPageProps) {
               group={heroPost.group}
             />
           )} */}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {morePosts.length > 0 && <MoreStories posts={posts} />}
         </Container>
         <IntroTemplate />
       </Layout>
