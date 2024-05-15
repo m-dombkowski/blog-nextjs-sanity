@@ -1,10 +1,11 @@
 import PostPreview from 'components/PostPreview'
 import type { Post } from 'lib/sanity.queries'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 export default function MoreStories({ posts }: { posts: Post[] }) {
   return (
-    <section>
-      <div className="mb-32 flex flex-wrap gap-5 items-start">
+    <ResponsiveMasonry columnsCountBreakPoints={{ 500: 1, 800: 2, 1100: 3 }}>
+      <Masonry style={{ gap: '25px' }}>
         {posts.map((post) => (
           <PostPreview
             key={post._id}
@@ -17,7 +18,7 @@ export default function MoreStories({ posts }: { posts: Post[] }) {
             group={post.group}
           />
         ))}
-      </div>
-    </section>
+      </Masonry>
+    </ResponsiveMasonry>
   )
 }

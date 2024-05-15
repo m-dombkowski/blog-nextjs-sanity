@@ -14,7 +14,10 @@ export default function PostPreview({
   slug,
 }: Omit<Post, '_id'>) {
   return (
-    <Link href={`/posts/${slug}`} className=" border-2 p-5 w-[30%]">
+    <Link
+      href={`/posts/${slug}`}
+      className=" border-2 p-5 break-inside-avoid  mb-5"
+    >
       {/* <div className="mb-5">
         <CoverImage
           slug={slug}
