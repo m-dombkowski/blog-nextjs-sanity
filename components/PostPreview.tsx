@@ -31,7 +31,11 @@ export default function PostPreview({
       </h3>
       <div className="text-lg flex gap-5 flex-col mt-auto">
         <Date dateString={date} />
-        <p>{group}</p>
+        <div className="flex gap-3">
+          {group.map((el, i) => {
+            return <p className=" text-xs">{el}</p>
+          })}
+        </div>
       </div>
     </Link>
   )
