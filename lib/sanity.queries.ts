@@ -49,7 +49,7 @@ export interface Author {
 export interface Post {
   _id: string
   title?: string
-  group: string
+  group: string[]
   coverImage?: any
   date?: string
   _updatedAt?: string
