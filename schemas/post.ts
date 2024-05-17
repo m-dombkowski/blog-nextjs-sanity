@@ -42,7 +42,8 @@ export default defineType({
     defineField({
       name: 'group',
       title: 'Group',
-      type: 'string',
+      type: 'array',
+      of: [{ type: 'string' }],
       validation: (rule) => rule.required(),
     }),
     defineField({

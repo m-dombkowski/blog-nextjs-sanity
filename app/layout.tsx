@@ -16,13 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <style global jsx>
-        {`
-          html {
-            font-family: ${montserrat.style.fontFamily};
-          }
-        `}
-      </style>
       <body className=" font-mono">{children}</body>
     </html>
   )
