@@ -5,7 +5,7 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 export default function MoreStories({ posts }: { posts: Post[] }) {
   return (
     <ResponsiveMasonry columnsCountBreakPoints={{ 500: 1, 800: 2, 1100: 3 }}>
-      <Masonry style={{ gap: '25px' }}>
+      <Masonry style={{ gap: '1.25rem' }}>
         {posts.map((post) => (
           <PostPreview
             key={post._id}
