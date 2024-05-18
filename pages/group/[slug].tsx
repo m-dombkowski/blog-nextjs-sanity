@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     let grupy = post.group
 
     grupy.forEach((el, j) => {
-      if (el === formatedQuery) {
+      if (el.toLowerCase() === formatedQuery) {
         filtered.push(post)
       }
     })
@@ -71,7 +71,7 @@ export const getStaticPaths = async () => {
   const slugs = await getAllPostsSlugs()
 
   return {
-    paths: slugs?.map(({ slug }) => `/g/${slug}`) || [],
+    paths: slugs?.map(({ slug }) => `/group/${slug}`) || [],
     fallback: 'blocking',
   }
 }
