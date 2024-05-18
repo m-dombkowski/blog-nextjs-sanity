@@ -1,6 +1,7 @@
 import { Post } from 'lib/sanity.queries'
-import PostPreview from './PostPreview'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+
+import PostPreview from './PostPreview'
 
 export default function FilteredByGroup({
   filteredPost,
@@ -10,7 +11,7 @@ export default function FilteredByGroup({
   formatedQuery: string
 }) {
   return (
-    <div className=" max-w-7xl mx-auto">
+    <div className=" max-w-7xl mx-auto px-20">
       <h1 className="text-4xl mt-20 mb-40">
         Posty z tagiem <span className=" font-bold">#{formatedQuery}</span>
       </h1>

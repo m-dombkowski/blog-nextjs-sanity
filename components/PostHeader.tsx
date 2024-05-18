@@ -29,7 +29,8 @@ export default function PostHeader(
         {group.map((el, i) => {
           return (
             <Link
-              href={`/g/${formatGroupToSlug(el)}`}
+              key={el}
+              href={`/group/${formatGroupToSlug(el).toLowerCase()}`}
               className=" text-base px-4 py-2 border rounded-xl border-black"
             >
               {el}

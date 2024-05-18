@@ -45,8 +45,8 @@ export default memo(function IntroTemplate() {
   }
 
   return (
-    <div className="flex justify-center border border-gray-200 bg-gray-50">
-      <NewsletterSignup />
+    <div className="flex justify-center bg-gray-50">
+      {/* <NewsletterSignup /> */}
     </div>
   )
 })
