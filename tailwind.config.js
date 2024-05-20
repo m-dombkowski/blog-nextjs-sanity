@@ -17,9 +17,6 @@ module.exports = {
       },
     },
     extend: {
-      fontFamily: {
-        monster: 'var(--font-monster)',
-      },
       gridTemplateRows: {
         masonary: 'repeat(16, minmax(0, 1fr))',
       },
