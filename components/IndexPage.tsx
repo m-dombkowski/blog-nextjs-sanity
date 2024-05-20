@@ -7,6 +7,7 @@ import MoreStories from 'components/MoreStories'
 import IntroTemplate from 'intro-template'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
+import PageWrapper from './PageWrapper'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -25,9 +26,10 @@ export default function IndexPage(props: IndexPageProps) {
       <IndexPageHead settings={settings} />
 
       <Layout preview={preview} loading={loading}>
-        <Container>
-          <BlogHeader title={title} description={description} level={1} />
-          {/* {heroPost && (
+        <PageWrapper>
+          <div className="w-full">
+            <BlogHeader title={title} description={description} level={1} />
+            {/* {heroPost && (
             <HeroPost
               title={heroPost.title}
               coverImage={heroPost.coverImage}
@@ -38,8 +40,9 @@ export default function IndexPage(props: IndexPageProps) {
               group={heroPost.group}
             />
           )} */}
-          {morePosts.length > 0 && <MoreStories posts={posts} />}
-        </Container>
+            {morePosts.length > 0 && <MoreStories posts={posts} />}
+          </div>
+        </PageWrapper>
         <IntroTemplate />
       </Layout>
     </>

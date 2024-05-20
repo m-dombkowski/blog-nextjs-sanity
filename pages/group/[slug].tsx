@@ -24,11 +24,14 @@ export default function Page(props: PageProps) {
   const { filtered, draftMode, formatedQuery } = props
 
   if (draftMode) {
-    return <div>Nie ma, draftmode</div>
+    return <div>Prosze spróbować ponownie</div>
   }
 
   return (
-    <FilteredByGroup filteredPost={filtered} formatedQuery={formatedQuery} />
+    <FilteredByGroup
+      filteredByGroupPost={filtered}
+      formatedQuery={formatedQuery}
+    />
   )
 }
 
