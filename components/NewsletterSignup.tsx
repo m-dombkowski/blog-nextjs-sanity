@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Loader2, MailIcon } from 'lucide-react'
 import React, { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
+import { Button } from 'components/ui/button'
 
 const Newsletter = () => {
   const [email, setEmail] = useState<any | null>(null)
