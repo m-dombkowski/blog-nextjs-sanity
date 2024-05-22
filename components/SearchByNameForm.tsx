@@ -1,7 +1,5 @@
 import { Search } from 'lucide-react'
-import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/router'
-import { startTransition, useCallback, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 type Inputs = {
   searchTerm: string
@@ -35,7 +33,7 @@ export default function SearchByNameForm({
           type="text"
           defaultValue={initialDefaultValue}
           placeholder="Wpisz tytuł którego szukasz"
-          className="py-4 px-8 min-w border-2 md:min-w-[400px]  outline-slate-500"
+          className="py-4 px-8 min-w border-2 border-black md:min-w-[400px]  outline-slate-500"
           {...register('searchTerm', {
             pattern: {
               value: /^[A-Za-z0-9#!%.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
@@ -43,7 +41,7 @@ export default function SearchByNameForm({
             },
           })}
         />
-        <button type="submit" className="p-4 border-2 border-l-0">
+        <button type="submit" className="p-4 border-2 border-l-0 border-black">
           <Search className="h-6 w-6" />
         </button>
       </form>

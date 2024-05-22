@@ -16,7 +16,7 @@ export default function PostPreview({
   return (
     <Link
       href={`/posts/${slug}`}
-      className="w-full h-auto block hover:shadow-xl transition duration-300 break-inside-avoid p-5"
+      className="group w-full h-auto block hover:shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] transition duration-300 break-inside-avoid p-5 "
     >
       {/* <div className="mb-5">
         <CoverImage
@@ -26,7 +26,7 @@ export default function PostPreview({
           priority={false}
         />
       </div> */}
-      <h3 className="mb-20 text-2xl leading-snug text-balance">
+      <h3 className="mb-20 text-2xl leading-snug text-balance group-hover:text-indigo-700">
         <div>{title}</div>
       </h3>
       <div className="text-lg flex gap-5 flex-col mt-auto">

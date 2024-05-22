@@ -26,10 +26,10 @@ export default function Navigation() {
   ]
 
   return (
-    <aside className="flex flex-col justify-start items-center fixed left-0 top-0 w-24 border-r-2 shadow-xl h-full">
+    <aside className="flex flex-col justify-start items-center fixed left-0 top-0 w-24 border-r-2 shadow-xl h-full border-black">
       <ul className="w-full">
         {navLinks.map((link, i) => (
-          <li key={i} className="w-full h-24 border-b-2">
+          <li key={i} className="w-full h-24 border-b-2 border-black">
             <Link
               className=" transition duration-300 w-full h-full flex justify-center items-center hover:bg-slate-200"
               href={link.href}

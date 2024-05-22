@@ -43,7 +43,7 @@ export default function FilteredPosts({
           <motion.div
             {...anim(slideUp, i * 0.3)}
             key={post._id}
-            className="border-2 mb-5 "
+            className="border-2 mb-5 border-[#000]"
           >
             <PostPreview
               title={post.title}
