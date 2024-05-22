@@ -26,7 +26,7 @@ export default function PostPreview({
           priority={false}
         />
       </div> */}
-      <h3 className="mb-20 text-2xl leading-snug text-balance group-hover:text-indigo-700">
+      <h3 className="mb-20 text-2xl leading-snug text-balance group-hover:text-indigo-700 font-bold transition duration-300">
         <div>{title}</div>
       </h3>
       <div className="text-lg flex gap-5 flex-col mt-auto">
