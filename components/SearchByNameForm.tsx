@@ -33,7 +33,7 @@ export default function SearchByNameForm({
           type="text"
           defaultValue={initialDefaultValue}
           placeholder="Wpisz tytuł którego szukasz"
-          className="py-4 px-8 min-w border-2 border-black md:min-w-[400px]  outline-slate-500"
+          className="py-4 px-8 min-w border-2 max-w-[200px] border-black md:max-w-[400px] focus-visible:outline-none"
           {...register('searchTerm', {
             pattern: {
               value: /^[A-Za-z0-9#!%.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,

@@ -25,15 +25,15 @@ export default function PostHeader(
       {/* <div className="hidden md:mb-12 md:block">
         {author && <Avatar name={author.name} picture={author.picture} />}
       </div> */}
-      <div className="flex gap-3 max-w-4xl mx-auto mb-5">
+      <div className="flex gap-4 max-w-4xl mx-auto mb-5">
         {group.map((el, i) => {
           return (
             <Link
               key={el}
               href={`/group/${formatGroupToSlug(el).toLowerCase()}`}
-              className=" text-base px-4 py-2 border rounded-xl border-black"
+              className=" text-xs md:text-base transition duration-300  font-bold hover:text-sky-600"
             >
-              {el}
+              {el.toLowerCase()}
             </Link>
           )
         })}
