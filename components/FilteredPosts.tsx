@@ -1,8 +1,8 @@
+import { motion,Variants } from 'framer-motion'
 import { Post } from 'lib/sanity.queries'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 import PostPreview from './PostPreview'
-import { Variants, motion } from 'framer-motion'
 
 export default function FilteredPosts({
   filteredPosts,
