@@ -15,26 +15,28 @@ type Link = {
 }
 
 export default function Navigation({ page }: { page: string }) {
+  const iconClass = 'h-6 w-6 md:h-12 md:w-12'
+
   const navLinks = [
     {
       href: '/home',
-      icon: <Home className=" h-6 w-6 md:h-12 md:w-12" />,
+      icon: <Home className={iconClass} />,
     },
     {
       href: '/about',
-      icon: <UserRound className=" h-6 w-6 md:h-12 md:w-12" />,
+      icon: <UserRound className={iconClass} />,
     },
     {
       href: '/search',
-      icon: <Search className=" h-6 w-6 md:h-12 md:w-12" />,
+      icon: <Search className={iconClass} />,
     },
     {
       href: '/newsletter',
-      icon: <MailPlus className=" h-6 w-6 md:h-12 md:w-12" />,
+      icon: <MailPlus className={iconClass} />,
     },
     {
       href: '/group',
-      icon: <Hash className=" h-6 w-6 md:h-12 md:w-12" />,
+      icon: <Hash className={iconClass} />,
     },
   ]
 
