@@ -1,5 +1,5 @@
 .portableText {
-  @apply text-lg leading-relaxed max-w-screen-sm;
+  @apply text-lg leading-relaxed md:max-w-[800px];
 }
 
 .portableText p,
@@ -30,4 +30,8 @@
 }
 .portableText a:hover {
   @apply text-blue-800;
+}
+
+.portableText p {
+  @apply text-sm md:text-base;
 }

@@ -25,7 +25,10 @@ export default function PostHeader(
       {/* <div className="hidden md:mb-12 md:block">
         {author && <Avatar name={author.name} picture={author.picture} />}
       </div> */}
-      <div className="flex gap-4 max-w-4xl mx-auto mb-5">
+      <div className="flex gap-4 max-w-4xl mx-auto mb-12 items-center pb-6 border-b border-black">
+        <div className="text-lg mr-10">
+          <Date dateString={date} />
+        </div>
         {group.map((el, i) => {
           return (
             <Link
@@ -42,14 +45,9 @@ export default function PostHeader(
       {/* <div className="mb-8 sm:mx-0 md:mb-16">
         <CoverImage title={title} image={coverImage} priority slug={slug} />
       </div> */}
-      <div className="mx-auto max-w-4xl">
-        {/* <div className="mb-6 block md:hidden">
+      {/* <div className="mb-6 block md:hidden">
           {author && <Avatar name={author.name} picture={author.picture} />}
         </div> */}
-        <div className="mb-6 text-lg">
-          <Date dateString={date} />
-        </div>
-      </div>
     </>
   )
 }

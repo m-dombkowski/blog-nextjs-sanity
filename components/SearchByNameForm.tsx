@@ -33,7 +33,7 @@ export default function SearchByNameForm({
           type="text"
           defaultValue={initialDefaultValue}
           placeholder="Wpisz tytuł którego szukasz"
-          className="py-4 px-8 min-w border-2 max-w-[200px] border-black md:max-w-[400px] focus-visible:outline-none"
+          className="py-4 px-8 md:min-w-[400px] border-2 max-w-[200px] border-black focus-visible:outline-none"
           {...register('searchTerm', {
             pattern: {
               value: /^[A-Za-z0-9#!%.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
@@ -41,7 +41,10 @@ export default function SearchByNameForm({
             },
           })}
         />
-        <button type="submit" className="p-4 border-2 border-l-0 border-black">
+        <button
+          type="submit"
+          className="p-4 border-2 border-l-0 border-black bg-sky-600"
+        >
           <Search className="h-6 w-6" />
         </button>
       </form>

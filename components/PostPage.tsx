@@ -42,7 +42,7 @@ export default function PostPage(props: PostPageProps) {
             <PostTitle>Loading…</PostTitle>
           ) : (
             <>
-              <article>
+              <article className="md:w-[800px]">
                 <PostHeader
                   title={post.title}
                   coverImage={post.coverImage}
@@ -52,8 +52,8 @@ export default function PostPage(props: PostPageProps) {
                 />
                 <PostBody content={post.content} />
               </article>
-              <SectionSeparator />
-              {morePosts?.length > 0 && <MoreStories posts={morePosts} />}
+              {/* <SectionSeparator />
+              {morePosts?.length > 0 && <MoreStories posts={morePosts} />} */}
             </>
           )}
         </Container>
