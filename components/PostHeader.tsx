@@ -26,20 +26,23 @@ export default function PostHeader(
         {author && <Avatar name={author.name} picture={author.picture} />}
       </div> */}
       <div className="flex gap-4 max-w-4xl mx-auto mb-12 items-center pb-6 border-b border-black">
-        <div className="text-lg mr-10">
+        <div className="text-lg mr-10 flex flex-row flex-wrap justify-start items-center w-full">
           <Date dateString={date} />
+
+          {group.map((el, i) => {
+            return (
+              <div key={el} className="relative mr-5">
+                <Link
+                  href={`/group/${formatGroupToSlug(el).toLowerCase()}`}
+                  className=" text-xs md:text-base transition duration-300  font-bold hover:text-sky-600 "
+                >
+                  {el.toLowerCase()}
+                </Link>
+                <span className="absolute top-0 right-0 h-full w-4 text-sky-600"></span>
+              </div>
+            )
+          })}
         </div>
-        {group.map((el, i) => {
-          return (
-            <Link
-              key={el}
-              href={`/group/${formatGroupToSlug(el).toLowerCase()}`}
-              className=" text-xs md:text-base transition duration-300  font-bold hover:text-sky-600"
-            >
-              {el.toLowerCase()}
-            </Link>
-          )
-        })}
       </div>
 
       {/* <div className="mb-8 sm:mx-0 md:mb-16">
