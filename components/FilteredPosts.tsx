@@ -14,7 +14,6 @@ export default function FilteredPosts({
       initial: 'initial',
       animate: 'open',
       open: 'open',
-      exit: 'exit',
       variants,
       custom,
     }
@@ -27,10 +26,6 @@ export default function FilteredPosts({
       opacity: 1,
       transition: { duration: 0.5, delay: 0.75 * i },
     }),
-    exit: {
-      y: '25px',
-      opacity: 0,
-    },
   }
 
   return (
