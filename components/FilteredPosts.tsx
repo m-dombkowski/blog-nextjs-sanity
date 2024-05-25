@@ -1,4 +1,4 @@
-import { motion,Variants } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { Post } from 'lib/sanity.queries'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
@@ -43,7 +43,7 @@ export default function FilteredPosts({
           <motion.div
             {...anim(slideUp, i * 0.3)}
             key={post._id}
-            className="border-2 mb-5 border-[#000]"
+            className="border-2 mb-5 border-[#000] shadow-xl"
           >
             <PostPreview
               title={post.title}
