@@ -1,4 +1,5 @@
 import IndexPage from 'components/IndexPage'
+import PageTransition from 'components/PageTransition'
 import PreviewIndexPage from 'components/PreviewIndexPage'
 import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getClient, getSettings } from 'lib/sanity.client'
@@ -19,10 +20,18 @@ export default function Page(props: PageProps) {
   const { posts, settings, draftMode } = props
 
   if (draftMode) {
-    return <PreviewIndexPage posts={posts} settings={settings} />
+    return (
+      <PageTransition>
+        <PreviewIndexPage posts={posts} settings={settings} />
+      </PageTransition>
+    )
   }
 
-  return <IndexPage posts={posts} settings={settings} />
+  return (
+    <PageTransition>
+      <IndexPage posts={posts} settings={settings} />
+    </PageTransition>
+  )
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {

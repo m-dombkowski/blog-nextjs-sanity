@@ -1,3 +1,4 @@
+import PageTransition from 'components/PageTransition'
 import PageWrapper from 'components/PageWrapper'
 import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getClient } from 'lib/sanity.client'
@@ -14,17 +15,19 @@ export default function Page(props: PageProps) {
   uniqueGroups.sort()
 
   return (
-    <PageWrapper>
-      <>
-        <h1 className="text-4xl my-20">Znajdź post po grupie</h1>
+    <PageTransition>
+      <PageWrapper>
+        <>
+          <h1 className="text-4xl my-20">Znajdź post po grupie</h1>
 
-        {uniqueGroups.map((group, i) => (
-          <Link href={`/group/${group}`} key={group}>
-            {group}
-          </Link>
-        ))}
-      </>
-    </PageWrapper>
+          {uniqueGroups.map((group, i) => (
+            <Link href={`/group/${group}`} key={group}>
+              {group}
+            </Link>
+          ))}
+        </>
+      </PageWrapper>
+    </PageTransition>
   )
 }
 

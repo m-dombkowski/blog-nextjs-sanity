@@ -1,3 +1,4 @@
+import PageTransition from 'components/PageTransition'
 import PostPage from 'components/PostPage'
 import PreviewPostPage from 'components/PreviewPostPage'
 import { readToken } from 'lib/sanity.api'
@@ -28,11 +29,21 @@ export default function ProjectSlugRoute(props: PageProps) {
 
   if (draftMode) {
     return (
-      <PreviewPostPage post={post} morePosts={morePosts} settings={settings} />
+      <PageTransition>
+        <PreviewPostPage
+          post={post}
+          morePosts={morePosts}
+          settings={settings}
+        />
+      </PageTransition>
     )
   }
 
-  return <PostPage post={post} morePosts={morePosts} settings={settings} />
+  return (
+    <PageTransition>
+      <PostPage post={post} morePosts={morePosts} settings={settings} />
+    </PageTransition>
+  )
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {

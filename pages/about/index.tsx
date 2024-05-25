@@ -1,3 +1,12 @@
+import PageTransition from 'components/PageTransition'
+import PageWrapper from 'components/PageWrapper'
+
 export default function Page() {
-  return <div className="">about</div>
+  return (
+    <PageTransition>
+      <PageWrapper>
+        <div className="">about</div>
+      </PageWrapper>
+    </PageTransition>
+  )
 }

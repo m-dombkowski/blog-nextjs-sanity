@@ -1,4 +1,5 @@
 import FilteredBySearchTerm from 'components/FilteredBySearchTerm'
+import PageTransition from 'components/PageTransition'
 import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getAllPostsSlugs, getClient } from 'lib/sanity.client'
 import { Post } from 'lib/sanity.queries'
@@ -22,7 +23,9 @@ export default function Page(props: PageProps) {
   }
 
   return (
-    <FilteredBySearchTerm filtered={filtered} formatedQuery={formatedQuery} />
+    <PageTransition>
+      <FilteredBySearchTerm filtered={filtered} formatedQuery={formatedQuery} />
+    </PageTransition>
   )
 }
 
