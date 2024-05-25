@@ -31,13 +31,13 @@ export default function App({
   return (
     <>
       {draftMode ? (
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait">
           <PreviewProvider token={token}>
             <Component key={pageKey} {...pageProps} />
           </PreviewProvider>
         </AnimatePresence>
       ) : (
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait">
           <Component key={pageKey} {...pageProps} />
         </AnimatePresence>
       )}
