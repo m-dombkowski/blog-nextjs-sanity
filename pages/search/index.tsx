@@ -7,7 +7,9 @@ export default function Page() {
     <PageTransition>
       <PageWrapper>
         <>
-          <h1 className="text-4xl my-20">Znajdź post którego szukasz</h1>
+          <h1 className="text-xl my-10 md:text-4xl md:my-20">
+            Znajdź post którego szukasz
+          </h1>
           <SearchByNameForm initialDefaultValue="" />
         </>
       </PageWrapper>

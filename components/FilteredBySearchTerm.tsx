@@ -15,8 +15,9 @@ export default function FilteredBySearchTerm({
   return (
     <PageWrapper>
       <>
-        <h1 className="text-4xl my-20">
-          Wyniki wyszukiwania dla &quot;{formatedQuery}&quot;
+        <h1 className="text-xl my-10 md:text-4xl md:my-20">
+          Wyniki wyszukiwania dla{' '}
+          <span className="font-bold">&quot;{formatedQuery}&quot;</span>
         </h1>
         <SearchByNameForm initialDefaultValue={formatedQuery} />
         {filtered.length > 0 ? (

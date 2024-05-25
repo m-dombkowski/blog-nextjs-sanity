@@ -6,7 +6,7 @@
 .portableText ul,
 .portableText ol,
 .portableText blockquote {
-  @apply my-6;
+  @apply my-6 text-sm md:text-base;
 }
 
 .portableText ul {
@@ -30,8 +30,4 @@
 }
 .portableText a:hover {
   @apply text-blue-800;
-}
-
-.portableText p {
-  @apply text-sm md:text-base;
 }

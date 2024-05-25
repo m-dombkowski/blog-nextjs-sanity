@@ -14,7 +14,7 @@ export default function FilteredByGroup({
   return (
     <PageWrapper>
       <>
-        <h1 className="text-4xl mt-20 mb-40">
+        <h1 className="text-2xl my-10 md:text-4xl md:mt-20 md:mb-40">
           Posty z tagiem <span className=" font-bold">#{formatedQuery}</span>
         </h1>
 
