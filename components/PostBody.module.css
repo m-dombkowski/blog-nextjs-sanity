@@ -1,5 +1,5 @@
 .portableText {
-  @apply text-lg leading-relaxed md:max-w-[800px];
+  @apply leading-relaxed md:max-w-[800px];
 }
 
 .portableText p,

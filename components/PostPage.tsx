@@ -42,7 +42,7 @@ export default function PostPage(props: PostPageProps) {
             <PostTitle>Loading…</PostTitle>
           ) : (
             <>
-              <article className="lg:w-[800px]">
+              <article className="lg:w-[800px] w-full">
                 <PostHeader
                   title={post.title}
                   coverImage={post.coverImage}
