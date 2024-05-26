@@ -1,5 +1,13 @@
 import PageTransition from 'components/PageTransition'
 import PageWrapper from 'components/PageWrapper'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from 'components/ui/dialog'
 import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getClient } from 'lib/sanity.client'
 import Link from 'next/link'
@@ -18,13 +26,30 @@ export default function Page(props: PageProps) {
     <PageTransition>
       <PageWrapper>
         <>
-          <h1 className="text-4xl my-20">Znajdź post po grupie</h1>
-
-          {uniqueGroups.map((group, i) => (
-            <Link href={`/group/${group}`} key={group}>
-              {group}
-            </Link>
-          ))}
+          <div className="flex justify-center items-center gap-5">
+            <h1 className="text-4xl my-20">Znajdź post po grupie</h1>
+            <Dialog>
+              <DialogTrigger className="font-bold rounded-full bg-sky-600 border-2 w-7 border-black ">
+                i
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Grupy ustawione są alfabetycznie</DialogTitle>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div className="flex flex-col gap-5 w-full">
+            {uniqueGroups.map((group, i) => (
+              <Link
+                href={`/group/${group}`}
+                key={group}
+                className="font-bold hover:text-sky-600"
+              >
+                #{group}
+              </Link>
+            ))}
+          </div>
         </>
       </PageWrapper>
     </PageTransition>
