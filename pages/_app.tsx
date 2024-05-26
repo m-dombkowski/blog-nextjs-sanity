@@ -6,12 +6,15 @@ import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import { Montserrat } from 'next/font/google'
 import { useRouter } from 'next/router'
+import topography from 'public/bg-topography.svg'
 
 export const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-monster',
   display: 'swap',
 })
+
+export const bg = topography
 
 export interface SharedPageProps {
   draftMode: boolean

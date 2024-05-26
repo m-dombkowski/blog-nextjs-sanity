@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        topography: "url('/bg-topography.svg')",
+      },
       gridTemplateRows: {
         masonary: 'repeat(16, minmax(0, 1fr))',
       },
