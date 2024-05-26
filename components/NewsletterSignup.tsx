@@ -1,21 +1,29 @@
 'use client'
 import axios from 'axios'
+import { Button } from 'components/ui/button'
 import { Loader2, MailIcon } from 'lucide-react'
 import React, { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { Button } from 'components/ui/button'
+type Inputs = {
+  email: string
+}
 
 const Newsletter = () => {
-  const [email, setEmail] = useState<any | null>(null)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState<boolean>(false)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>()
+
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
     setLoading(true)
     axios
       .put('/api/newsletter', {
-        email: email,
+        email: formData.email,
       })
       .then((res: any) => {
         if (res.status === 200) {
@@ -33,53 +41,55 @@ const Newsletter = () => {
   }
 
   return (
-    <div className="p-32">
-      <h2 className="text-stroke animate-title z-10 cursor-default whitespace-nowrap bg-white bg-clip-text text-center text-3xl font-bold text-transparent duration-1000 sm:text-4xl md:text-4xl">
-        Join the waitlist for my
-      </h2>
-      <h1 className="animate-fade-in-3 z-10 cursor-default whitespace-nowrap bg-white bg-gradient-to-r from-purple-300 to-purple-800 bg-clip-text text-center text-4xl font-bold text-transparent duration-1000 sm:text-6xl md:text-5xl">
-        Newsletter
+    <>
+      <h1 className="text-xl md:text-4xl font-bold mb-10 text-center mt-20">
+        Zapisz się na newsletter
       </h1>
       {success ? (
-        <div className="flex justify-center items-center pt-12">
-          <div className="isolate aspect-video h-32 w-96 flex flex-col justify-center items-center rounded-xl bg-white/20 shadow-lg ring-1 ring-black/5">
-            Thanks for subscribing! 🎉
-          </div>
-        </div>
+        <h1 className="text-base md:text-2xl font-bold text-center">
+          Zapisano pomyślnie
+        </h1>
       ) : (
         <form
-          onSubmit={handleSubmit}
-          className="w-full flex justify-center items-center pt-12"
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex justify-center items-center  flex-col gap-5"
         >
-          <div className="min-w-1/2 w-full sm:py-3 shadow-outline-gray focus-within:!shadow-outline-gray-focus group flex items-center gap-x-4 rounded-[9px] bg-[#090D11] py-1 pl-4 pr-1 transition-all duration-300 focus-within:bg-[#15141B] hover:bg-[#15141B] hover:shadow-transparent">
-            <MailIcon className="hidden h-6 w-6 text-[#4B4C52] transition-colors duration-300 group-focus-within:text-white group-hover:text-white sm:inline" />
-            <input
-              disabled={loading || success}
-              value={email ?? ''}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email address"
-              required
-              type="email"
-              className="flex-1 bg-transparent text-sm text-white placeholder-[#4B4C52] outline-none placeholder:transition-colors placeholder:duration-300 group-focus-within:placeholder-white sm:text-base"
-            />
-            {loading ? (
-              <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <button
-                type="submit"
-                className="p-2 bg-zinc-400 text-white rounded-sm"
-              >
-                {' '}
-                Subscribe
-              </button>
-            )}
-          </div>
+          <input
+            type="email"
+            disabled={loading || success}
+            placeholder="Twój adres email"
+            className="py-2 px-4 text-sm md:text-base md:py-4 md:px-8 md:min-w-[400px] border-2 max-w-[200px] border-black focus-visible:outline-none"
+            {...register('email', {
+              required: true,
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Zły format adresu email',
+              },
+            })}
+          />
+
+          {errors.email && (
+            <p className="text-base md:text-xl font-bold text-red-500 mb-2 text-center">
+              {errors.email.message}
+            </p>
+          )}
+          {loading ? (
+            <Button disabled>
+              <Loader2 className="mr-2 h-8 w-8 animate-spin" />
+              <span className=" text-lg text-black">Proszę czekać</span>
+            </Button>
+          ) : (
+            <button
+              type="submit"
+              className=" text-sm md:text-lg transition duration-300 p-4 border-2  border-black bg-sky-600 hover:bg-sky-500 font-bold"
+            >
+              {' '}
+              Zapisz się
+            </button>
+          )}
         </form>
       )}
-    </div>
+    </>
   )
 }
 
