@@ -42,7 +42,7 @@ const Newsletter = () => {
 
   return (
     <>
-      <h1 className="text-xl md:text-4xl font-bold mb-10 text-center mt-20">
+      <h1 className="text-xl md:text-4xl  mb-10 text-center mt-20">
         Zapisz się na newsletter
       </h1>
       {success ? (
