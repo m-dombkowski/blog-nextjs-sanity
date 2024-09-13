@@ -7,6 +7,9 @@ import dynamic from 'next/dynamic'
 import { Montserrat } from 'next/font/google'
 import { useRouter } from 'next/router'
 import topography from 'public/bg-topography.svg'
+import { useEffect, useState } from 'react'
+import useWindowDimensions from 'hooks/UseWindowDimensions'
+import { Device, ScreenSizeContext } from 'lib/context/screenSize'
 
 export const montserrat = Montserrat({
   subsets: ['latin'],
@@ -30,18 +33,28 @@ export default function App({
   const { draftMode, token } = pageProps
   const route = useRouter()
   const pageKey = route.asPath
+  const { width } = useWindowDimensions()
+  const [deviceType, setDeviceType] = useState<Device>(Device.NONE)
+
+  useEffect(() => {
+    width < 1025 ? setDeviceType(Device.MOBILE) : setDeviceType(Device.DESKTOP)
+  }, [width])
 
   return (
     <>
       {draftMode ? (
         <AnimatePresence mode="wait">
-          <PreviewProvider token={token}>
-            <Component key={pageKey} {...pageProps} />
-          </PreviewProvider>
+          <ScreenSizeContext.Provider value={{ deviceType }}>
+            <PreviewProvider token={token}>
+              <Component key={pageKey} {...pageProps} />
+            </PreviewProvider>
+          </ScreenSizeContext.Provider>
         </AnimatePresence>
       ) : (
         <AnimatePresence mode="wait">
-          <Component key={pageKey} {...pageProps} />
+          <ScreenSizeContext.Provider value={{ deviceType }}>
+            <Component key={pageKey} {...pageProps} />
+          </ScreenSizeContext.Provider>
         </AnimatePresence>
       )}
       {draftMode && <VisualEditing />}
