@@ -3,17 +3,43 @@ import PageWrapper from 'components/PageWrapper'
 import Image from 'next/image'
 
 import Portrait from '../../public/blog-portrait-trimmed-no-bg.png'
+import useWindowDimensions from 'hooks/UseWindowDimensions'
+import clsx from 'clsx'
+import { useContext, useEffect, useState } from 'react'
+import { Device, ScreenSizeContext } from 'lib/context/screenSize'
 
 export default function Page() {
+  const { width } = useWindowDimensions()
+  // const [deviceType, setDeviceType] = useState<Device>(Device.NONE)
+  const { deviceType } = useContext(ScreenSizeContext)
+
   return (
     <PageTransition>
       <PageWrapper>
         <div className="flex relative justify-end">
-          <div className="text-left flex flex-col gap-5 my-20 w-1/2">
-            <h1 className="md:text-6xl text-2xl font-bold text-center mb-20">
+          <div
+            className={clsx(
+              'text-left flex flex-col gap-5 my-20',
+              deviceType === Device.DESKTOP ? 'w-1/2' : 'w-full',
+            )}
+          >
+            <h1 className="md:text-6xl text-4xl font-bold text-center ">
               O mnie
             </h1>
-            <p>Dzień dobry, miło mi że odwiedziłeś mojego bloga!</p>
+            {deviceType === Device.MOBILE && (
+              <div className="flex justify-center items-center ">
+                <Image
+                  src={Portrait}
+                  alt="My portrait image"
+                  width={250}
+                  height={250}
+                  className=" rounded-full"
+                />
+              </div>
+            )}
+            <p className="mt-20">
+              Dzień dobry, miło mi że odwiedziłeś mojego bloga!
+            </p>
             <p>Nazywam się Jacek Dombkowski i jestem radcą prawnym.</p>
             <p>
               Całe moje zawodowe życie związany jestem z obsługą prawną
@@ -38,15 +64,17 @@ export default function Page() {
             </p>
             <p>Miłego czytania!</p>
           </div>
-          <div>
-            <Image
-              src={Portrait}
-              alt="My portrait image"
-              width={250}
-              height={250}
-              className=" rounded-full sticky top-0"
-            />
-          </div>
+          {deviceType === Device.DESKTOP && (
+            <div>
+              <Image
+                src={Portrait}
+                alt="My portrait image"
+                width={250}
+                height={250}
+                className=" rounded-full sticky top-10"
+              />
+            </div>
+          )}
         </div>
       </PageWrapper>
     </PageTransition>
