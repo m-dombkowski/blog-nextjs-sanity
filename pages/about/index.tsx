@@ -8,8 +8,8 @@ export default function Page() {
   return (
     <PageTransition>
       <PageWrapper>
-        <div className="flex relative max-w-[50%]">
-          <div className="text-left flex flex-col gap-5 my-20">
+        <div className="flex relative justify-end">
+          <div className="text-left flex flex-col gap-5 my-20 w-1/2">
             <h1 className="md:text-6xl text-2xl font-bold text-center mb-20">
               O mnie
             </h1>
@@ -38,13 +38,13 @@ export default function Page() {
             </p>
             <p>Miłego czytania!</p>
           </div>
-          <div className="absolute -right-1/2 top-[10%]">
+          <div>
             <Image
               src={Portrait}
               alt="My portrait image"
               width={250}
               height={250}
-              className=" rounded-full"
+              className=" rounded-full sticky top-0"
             />
           </div>
         </div>
@@ -52,3 +52,4 @@ export default function Page() {
     </PageTransition>
   )
 }
+// absolute top-[10%] -right-1/2
