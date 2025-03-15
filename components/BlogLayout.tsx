@@ -11,10 +11,10 @@ export default function BlogLayout({
 }) {
   return (
     <>
-      <div className="min-h-screen">
-        <AlertBanner preview={preview} loading={loading} />
-        <>{children}</>
-      </div>
+      {/* <div className="min-h-screen"> */}
+      {/* <AlertBanner preview={preview} loading={loading} /> */}
+      {children}
+      {/* </div> */}
     </>
   )
 }
