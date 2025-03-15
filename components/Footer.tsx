@@ -1,6 +1,7 @@
-import Link from 'next/link'
-import PageWrapper from './PageWrapper'
 import { Linkedin } from 'lucide-react'
+import Link from 'next/link'
+
+import PageWrapper from './PageWrapper'
 
 export default function Footer() {
   return (

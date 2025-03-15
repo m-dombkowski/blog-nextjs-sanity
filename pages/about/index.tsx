@@ -1,12 +1,12 @@
+import clsx from 'clsx'
 import PageTransition from 'components/PageTransition'
 import PageWrapper from 'components/PageWrapper'
+import useWindowDimensions from 'hooks/UseWindowDimensions'
+import { Device, ScreenSizeContext } from 'lib/context/screenSize'
 import Image from 'next/image'
+import { useContext, useEffect, useState } from 'react'
 
 import Portrait from '../../public/blog-portrait-trimmed-no-bg.png'
-import useWindowDimensions from 'hooks/UseWindowDimensions'
-import clsx from 'clsx'
-import { useContext, useEffect, useState } from 'react'
-import { Device, ScreenSizeContext } from 'lib/context/screenSize'
 
 export default function Page() {
   const { width } = useWindowDimensions()
