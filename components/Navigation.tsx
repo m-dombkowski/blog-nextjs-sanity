@@ -71,12 +71,18 @@ export default function Navigation({ page }: { page: string }) {
       <ul className="w-full flex justify-start items-center  min-w-80 border border-black">
         {navLinks.map((link, i) => {
           return page.includes(link.href) ? (
-            <li className="flex-1 bg-[#fffeec] border-r first-of-type:border-l-0 last-of-type:border-r-0  border-black flex justify-center items-center">
-              <NavItemHighlited key={i} link={link} />
+            <li
+              key={i}
+              className="flex-1 bg-[#fffeec] border-r first-of-type:border-l-0 last-of-type:border-r-0  border-black flex justify-center items-center"
+            >
+              <NavItemHighlited link={link} />
             </li>
           ) : (
-            <li className="flex-1 bg-[#fffeec] border-r first-of-type:border-l-0 last-of-type:border-r-0  border-black flex justify-center items-center">
-              <NavItem key={i} link={link} />
+            <li
+              key={i}
+              className="flex-1 bg-[#fffeec] border-r first-of-type:border-l-0 last-of-type:border-r-0  border-black flex justify-center items-center"
+            >
+              <NavItem link={link} />
             </li>
           )
         })}
