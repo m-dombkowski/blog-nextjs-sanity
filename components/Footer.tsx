@@ -6,10 +6,10 @@ import PageWrapper from './PageWrapper'
 export default function Footer() {
   return (
     <footer className=" mt-48 border-t-2 border-black py-20 from-[#fffeec] via-[#fffffb] to-white bg-gradient-to-t">
-      <div className="flex max-w-7xl mx-auto sm:pl-24 sm:pr-12 md:px-32 flex-col items-center pl-[72px] pr-6">
-        <div className="flex w-full justify-between">
+      <div className="flex max-w-7xl mx-auto sm:pl-24 sm:pr-12 md:px-32 flex-col items-center md:pl-[72px] md:pr-6 px-6">
+        <div className="flex w-full md:justify-between flex-wrap flex-col md:flex-row">
           <div className=" flex flex-col gap-5">
-            <h1 className="text-2xl font-bold mb-10">Kontakt</h1>
+            <h1 className="text-2xl font-bold md:mb-10 mb-2">Kontakt</h1>
             <p>
               Email:{' '}
               <Link
@@ -38,7 +38,9 @@ export default function Footer() {
             </p>
           </div>
           <div className="flex flex-col gap-5">
-            <h1 className="text-2xl font-bold mb-10">Dodatkowe informacje</h1>
+            <h1 className="text-2xl font-bold md:mb-10 md:mt-0 mt-12 mb-2">
+              Dodatkowe informacje
+            </h1>
             <Link
               className="transition duration-300 hover:text-sky-600"
               href="#"

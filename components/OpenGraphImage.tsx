@@ -27,7 +27,21 @@ export function OpenGraphImage(props: { title: string }) {
         backgroundPosition: '0 -8px, 0 -8px',
       }}
     >
-      <Image className="flex" src={OpenGraphImg} alt="open graph image" />
+      <div
+        style={{
+          display: 'flex',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Image className="flex" src={OpenGraphImg} alt="open graph image" />
+        </div>
+      </div>
     </div>
     // <div
     //   style={{
