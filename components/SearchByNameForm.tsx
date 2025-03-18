@@ -1,14 +1,19 @@
-import { Search } from 'lucide-react'
+import { Loader, Search } from 'lucide-react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import spinner from '../public/spinner.gif'
+
 type Inputs = {
   searchTerm: string
 }
 
 export default function SearchByNameForm({
   initialDefaultValue,
+  isFetching,
 }: {
   initialDefaultValue: string
+  isFetching: boolean
 }) {
   const {
     register,
@@ -45,7 +50,11 @@ export default function SearchByNameForm({
           type="submit"
           className="p-4 border-2 border-l-0 border-black bg-sky-600"
         >
-          <Search className="h-6 w-6" />
+          {!isFetching ? (
+            <Search className="h-6 w-6" />
+          ) : (
+            <Loader className="h-6 w-6" />
+          )}
         </button>
       </form>
       {errors.searchTerm && (

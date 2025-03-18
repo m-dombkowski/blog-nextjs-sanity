@@ -4,10 +4,11 @@ import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getAllPostsSlugs, getClient } from 'lib/sanity.client'
 import { Post } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
+import { SanityClient } from 'next-sanity'
 import { SharedPageProps } from 'pages/_app'
+import { useEffect, useState } from 'react'
 
 interface PageProps extends SharedPageProps {
-  filtered: Post[]
   formatedQuery: string
 }
 
@@ -16,7 +17,37 @@ interface Query {
 }
 
 export default function Page(props: PageProps) {
-  const { filtered, draftMode, formatedQuery } = props
+  const { draftMode, formatedQuery } = props
+
+  const [isFetching, setIsFetching] = useState(false)
+  const [filteredPosts, setFilteredPosts] = useState<Post[] | []>([])
+  const [error, setError] = useState<any | null>(null)
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setIsFetching(true)
+      setError(null)
+      try {
+        const client = getClient()
+        const data = await getAllPosts(client)
+        console.log(data)
+        setFilteredPosts(
+          data.filter((post, i) => {
+            return post.title.toLowerCase().includes(formatedQuery)
+          }),
+        )
+        // setPosts(data);
+      } catch (err) {
+        console.error('Error fetching posts:', err)
+        setError(err)
+        setFilteredPosts(null)
+      } finally {
+        setIsFetching(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
 
   if (draftMode) {
     return <div>Prosze spróbować ponownie</div>
@@ -24,34 +55,29 @@ export default function Page(props: PageProps) {
 
   return (
     <PageTransition>
-      <FilteredBySearchTerm filtered={filtered} formatedQuery={formatedQuery} />
+      <FilteredBySearchTerm
+        formatedQuery={formatedQuery}
+        filteredPosts={filteredPosts}
+        isFetching={isFetching}
+      />
     </PageTransition>
   )
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
+  console.log(ctx)
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const allPosts = await getAllPosts(client)
+  const postsObj = await getAllPosts(client)
+
   const query = ctx.params?.slug
   const formatedQuery = query.split('-').join(' ')
-
-  const filtered = allPosts.filter((post, i) => {
-    return post.title.toLowerCase().includes(formatedQuery)
-  })
-
-  if (!allPosts) {
-    return {
-      notFound: true,
-    }
-  }
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      filtered,
       formatedQuery,
     },
   }

@@ -33,12 +33,12 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const allPosts = await getAllPosts(client)
+  const posts = await getAllPosts(client)
   const query = ctx.params?.slug
   const formatedQuery = query.split('-').join(' ')
   let filtered = []
 
-  allPosts.forEach((post, i) => {
+  posts.forEach((post, i) => {
     let grupy = post.group
 
     grupy.forEach((el, j) => {
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     })
   })
 
-  if (!allPosts) {
+  if (!posts) {
     return {
       notFound: true,
     }

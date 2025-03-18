@@ -4,13 +4,18 @@ import FilteredPosts from './FilteredPosts'
 import NoPostFound from './NoPostFound'
 import PageWrapper from './PageWrapper'
 import SearchByNameForm from './SearchByNameForm'
+import { useEffect, useState } from 'react'
+import { getAllPosts, getClient } from 'lib/sanity.client'
+import { SanityClient } from 'sanity'
 
 export default function FilteredBySearchTerm({
-  filtered,
   formatedQuery,
+  isFetching,
+  filteredPosts,
 }: {
-  filtered: Post[]
   formatedQuery: string
+  isFetching: boolean
+  filteredPosts: Post[]
 }) {
   return (
     <PageWrapper>
@@ -19,12 +24,14 @@ export default function FilteredBySearchTerm({
           Wyniki wyszukiwania dla{' '}
           <span className="font-bold">&quot;{formatedQuery}&quot;</span>
         </h1>
-        <SearchByNameForm initialDefaultValue={formatedQuery} />
-        {filtered.length > 0 ? (
-          <FilteredPosts filteredPosts={filtered} />
-        ) : (
-          <NoPostFound />
+        <SearchByNameForm
+          initialDefaultValue={formatedQuery}
+          isFetching={isFetching}
+        />
+        {filteredPosts.length > 0 && !isFetching && (
+          <FilteredPosts filteredPosts={filteredPosts} />
         )}
+        {filteredPosts && filteredPosts.length === 0 && <NoPostFound />}
       </>
     </PageWrapper>
   )
