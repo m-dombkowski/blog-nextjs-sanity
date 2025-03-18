@@ -10,6 +10,7 @@ import {
 } from 'components/ui/dialog'
 import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getClient } from 'lib/sanity.client'
+
 import Link from 'next/link'
 import { SharedPageProps } from 'pages/_app'
 
@@ -42,7 +43,7 @@ export default function Page(props: PageProps) {
           <div className="flex flex-col gap-5 w-full">
             {uniqueGroups.map((group, i) => (
               <Link
-                href={`/group/${group}`}
+                href={`/group/${group.split(' ').join('-')}`}
                 key={group}
                 className="font-bold hover:text-sky-600"
               >
