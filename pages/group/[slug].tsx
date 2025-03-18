@@ -1,12 +1,6 @@
 import FilteredByGroup from 'components/FilteredByGroupPosts'
 import { readToken } from 'lib/sanity.api'
-import {
-  getAllPosts,
-  getAllPostsSlugs,
-  getClient,
-  getPostAndMoreStories,
-  getSettings,
-} from 'lib/sanity.client'
+import { getAllPosts, getAllPostsSlugs, getClient } from 'lib/sanity.client'
 import { Post, Settings } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { SharedPageProps } from 'pages/_app'
