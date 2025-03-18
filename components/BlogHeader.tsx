@@ -15,16 +15,15 @@ export default function BlogHeader({
   switch (level) {
     case 1:
       return (
-        <header className="mb-10 mt-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-between text-pretty">
-          <h1 className="text-4xl font-bold leading-tight md:pr-8 md:text-8xl">
+        <header className="mb-10 mt-16 flex flex-col items-center md:my-20 md:flex-row md:justify-between text-pretty">
+          <h1 className="text-4xl font-bold leading-tight md:pr-8 md:text-7xl">
             {title}
           </h1>
-          <h4
+          {/* <h4
             className={`mt-5 text-center text-lg md:pl-8 md:text-left ${styles.portableText}`}
           >
-            {/* Portable Text test */}
             <PortableText value={description} />
-          </h4>
+          </h4> */}
         </header>
       )
 
