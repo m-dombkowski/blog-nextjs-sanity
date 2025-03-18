@@ -19,36 +19,6 @@ interface Query {
 export default function Page(props: PageProps) {
   const { draftMode, formatedQuery } = props
 
-  const [isFetching, setIsFetching] = useState(false)
-  const [filteredPosts, setFilteredPosts] = useState<Post[] | []>([])
-  const [error, setError] = useState<any | null>(null)
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setIsFetching(true)
-      setError(null)
-      try {
-        const client = getClient()
-        const data = await getAllPosts(client)
-        console.log(data)
-        setFilteredPosts(
-          data.filter((post, i) => {
-            return post.title.toLowerCase().includes(formatedQuery)
-          }),
-        )
-        // setPosts(data);
-      } catch (err) {
-        console.error('Error fetching posts:', err)
-        setError(err)
-        setFilteredPosts(null)
-      } finally {
-        setIsFetching(false)
-      }
-    }
-
-    fetchPosts()
-  }, [])
-
   if (draftMode) {
     return <div>Prosze spróbować ponownie</div>
   }
@@ -66,10 +36,6 @@ export default function Page(props: PageProps) {
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
-  console.log(ctx)
-  const client = getClient(draftMode ? { token: readToken } : undefined)
-
-  const postsObj = await getAllPosts(client)
 
   const query = ctx.params?.slug
   const formatedQuery = query.split('-').join(' ')
