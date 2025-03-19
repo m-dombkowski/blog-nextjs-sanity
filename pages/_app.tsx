@@ -10,6 +10,7 @@ import topography from 'public/bg-topography.svg'
 import { useEffect, useState } from 'react'
 import useWindowDimensions from 'hooks/UseWindowDimensions'
 import { Device, ScreenSizeContext } from 'lib/context/screenSize'
+import { PostsProvider } from 'lib/context/posts'
 
 export const montserrat = Montserrat({
   subsets: ['latin'],
@@ -42,22 +43,24 @@ export default function App({
 
   return (
     <>
-      {draftMode ? (
-        <AnimatePresence mode="wait">
-          <ScreenSizeContext.Provider value={{ deviceType }}>
-            <PreviewProvider token={token}>
+      <PostsProvider>
+        {draftMode ? (
+          <AnimatePresence mode="wait">
+            <ScreenSizeContext.Provider value={{ deviceType }}>
+              <PreviewProvider token={token}>
+                <Component key={pageKey} {...pageProps} />
+              </PreviewProvider>
+            </ScreenSizeContext.Provider>
+          </AnimatePresence>
+        ) : (
+          <AnimatePresence mode="wait">
+            <ScreenSizeContext.Provider value={{ deviceType }}>
               <Component key={pageKey} {...pageProps} />
-            </PreviewProvider>
-          </ScreenSizeContext.Provider>
-        </AnimatePresence>
-      ) : (
-        <AnimatePresence mode="wait">
-          <ScreenSizeContext.Provider value={{ deviceType }}>
-            <Component key={pageKey} {...pageProps} />
-          </ScreenSizeContext.Provider>
-        </AnimatePresence>
-      )}
-      {draftMode && <VisualEditing />}
+            </ScreenSizeContext.Provider>
+          </AnimatePresence>
+        )}
+        {draftMode && <VisualEditing />}{' '}
+      </PostsProvider>
     </>
   )
 }

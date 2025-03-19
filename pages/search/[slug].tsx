@@ -1,13 +1,11 @@
 import FilteredBySearchTerm from 'components/FilteredBySearchTerm'
 import PageTransition from 'components/PageTransition'
 import { readToken } from 'lib/sanity.api'
-import { getAllPosts, getAllPostsSlugs, getClient } from 'lib/sanity.client'
-import { Post } from 'lib/sanity.queries'
+import { getAllPostsSlugs } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
 import { SharedPageProps } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
-  filtered: Post[]
   formatedQuery: string
 }
 
@@ -16,7 +14,7 @@ interface Query {
 }
 
 export default function Page(props: PageProps) {
-  const { filtered, draftMode, formatedQuery } = props
+  const { draftMode, formatedQuery } = props
 
   if (draftMode) {
     return <div>Prosze spróbować ponownie</div>
@@ -24,34 +22,21 @@ export default function Page(props: PageProps) {
 
   return (
     <PageTransition>
-      <FilteredBySearchTerm filtered={filtered} formatedQuery={formatedQuery} />
+      <FilteredBySearchTerm formatedQuery={formatedQuery} />
     </PageTransition>
   )
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
-  const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const allPosts = await getAllPosts(client)
   const query = ctx.params?.slug
   const formatedQuery = query.split('-').join(' ')
-
-  const filtered = allPosts.filter((post, i) => {
-    return post.title.toLowerCase().includes(formatedQuery)
-  })
-
-  if (!allPosts) {
-    return {
-      notFound: true,
-    }
-  }
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      filtered,
       formatedQuery,
     },
   }

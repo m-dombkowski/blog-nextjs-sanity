@@ -1,8 +1,19 @@
 import PageTransition from 'components/PageTransition'
 import PageWrapper from 'components/PageWrapper'
 import SearchByNameForm from 'components/SearchByNameForm'
+import { readToken } from 'lib/sanity.api'
+import { GetStaticProps } from 'next'
+import { SharedPageProps } from 'pages/_app'
 
-export default function Page() {
+interface PageProps extends SharedPageProps {
+  formatedQuery: string
+}
+
+interface Query {
+  [key: string]: string
+}
+
+export default function Page(props: PageProps) {
   return (
     <PageTransition>
       <PageWrapper>
@@ -15,4 +26,21 @@ export default function Page() {
       </PageWrapper>
     </PageTransition>
   )
+}
+
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { draftMode = false, params = {} } = ctx
+  let formatedQuery = ''
+  const query = ctx.params?.slug
+  if (query) {
+    formatedQuery = query.split('-').join(' ')
+  }
+
+  return {
+    props: {
+      draftMode,
+      token: draftMode ? readToken : '',
+      formatedQuery,
+    },
+  }
 }

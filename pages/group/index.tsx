@@ -61,11 +61,12 @@ export const getStaticProps = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const allPosts = await getAllPosts(client)
+  const posts = await getAllPosts(client)
+  const isFetching = posts
 
   let groups: string[] = []
 
-  allPosts.forEach((post, i) => {
+  posts.forEach((post, i) => {
     let grupy = post.group
 
     grupy.forEach((el, j) => {
@@ -79,6 +80,7 @@ export const getStaticProps = async (ctx) => {
       draftMode,
       token: draftMode ? readToken : '',
       uniqueGroups,
+      isFetching,
     },
   }
 }

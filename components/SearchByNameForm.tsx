@@ -1,6 +1,7 @@
 import { Search } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
+
 type Inputs = {
   searchTerm: string
 }
@@ -36,7 +37,7 @@ export default function SearchByNameForm({
           className="py-2 px-4 text-sm md:text-base md:py-4 md:px-8 md:min-w-[400px] border-2 max-w-[200px] border-black focus-visible:outline-none"
           {...register('searchTerm', {
             pattern: {
-              value: /^[A-Za-z0-9#!%.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
+              value: /^[A-Za-z0-9#!%*.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
               message: 'Nieodpowiednia wartość w polu',
             },
           })}

@@ -1,17 +1,30 @@
 import { Post } from 'lib/sanity.queries'
-
 import FilteredPosts from './FilteredPosts'
 import NoPostFound from './NoPostFound'
 import PageWrapper from './PageWrapper'
 import SearchByNameForm from './SearchByNameForm'
+import { useContext, useEffect, useState } from 'react'
+import { PostsContext } from 'lib/context/posts'
 
 export default function FilteredBySearchTerm({
-  filtered,
   formatedQuery,
 }: {
-  filtered: Post[]
   formatedQuery: string
 }) {
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>(null)
+
+  const { posts } = useContext(PostsContext)
+
+  useEffect(() => {
+    if (posts) {
+      setFilteredPosts(
+        posts?.filter((post) => {
+          return post.title?.toLowerCase().includes(formatedQuery)
+        }),
+      )
+    }
+  }, [formatedQuery, posts])
+
   return (
     <PageWrapper>
       <>
@@ -20,8 +33,8 @@ export default function FilteredBySearchTerm({
           <span className="font-bold">&quot;{formatedQuery}&quot;</span>
         </h1>
         <SearchByNameForm initialDefaultValue={formatedQuery} />
-        {filtered.length > 0 ? (
-          <FilteredPosts filteredPosts={filtered} />
+        {filteredPosts?.length > 0 ? (
+          <FilteredPosts filteredPosts={filteredPosts} />
         ) : (
           <NoPostFound />
         )}
