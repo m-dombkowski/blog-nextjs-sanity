@@ -18,9 +18,9 @@ interface PostsPropsInterface {
 }
 
 const PostsContext = createContext<PostsContextType | undefined>({
-    posts: [],
-    setPosts: () => {}
-});
+  posts: [],
+  setPosts: () => {},
+})
 
 export const PostsProvider: React.FC<PostsPropsInterface> = ({ children }) => {
   const [posts, setPosts] = useState<Post[] | null>(null)
