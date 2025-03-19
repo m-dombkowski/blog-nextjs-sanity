@@ -6,7 +6,8 @@ import React, {
   ReactNode,
   SetStateAction,
 } from 'react'
-import { getAllPosts, getClient, Post } from 'lib/sanity.client'
+import { getAllPosts, getClient } from 'lib/sanity.client'
+import { Post } from 'lib/sanity.queries'
 
 interface PostsContextType {
   posts: Post[] | null
@@ -17,7 +18,7 @@ interface PostsPropsInterface {
   children?: ReactNode
 }
 
-const PostsContext = createContext<PostsContextType | undefined>({
+export const PostsContext = createContext<PostsContextType | undefined>({
   posts: [],
   setPosts: () => {},
 })
@@ -31,7 +32,6 @@ export const PostsProvider: React.FC<PostsPropsInterface> = ({ children }) => {
       try {
         const client = getClient()
         const data = await getAllPosts(client)
-        console.log(data)
         setPosts(data)
       } catch (err: any) {
         console.error('Error fetching posts:', err)

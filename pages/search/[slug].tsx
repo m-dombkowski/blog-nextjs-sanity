@@ -1,12 +1,9 @@
 import FilteredBySearchTerm from 'components/FilteredBySearchTerm'
 import PageTransition from 'components/PageTransition'
 import { readToken } from 'lib/sanity.api'
-import { getAllPosts, getAllPostsSlugs, getClient } from 'lib/sanity.client'
-import { Post } from 'lib/sanity.queries'
+import { getAllPostsSlugs } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
-import { SanityClient } from 'next-sanity'
 import { SharedPageProps } from 'pages/_app'
-import { useEffect, useState } from 'react'
 
 interface PageProps extends SharedPageProps {
   formatedQuery: string
@@ -25,11 +22,7 @@ export default function Page(props: PageProps) {
 
   return (
     <PageTransition>
-      <FilteredBySearchTerm
-        formatedQuery={formatedQuery}
-        filteredPosts={filteredPosts}
-        isFetching={isFetching}
-      />
+      <FilteredBySearchTerm formatedQuery={formatedQuery} />
     </PageTransition>
   )
 }

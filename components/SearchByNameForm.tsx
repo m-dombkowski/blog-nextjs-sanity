@@ -1,8 +1,6 @@
-import { Loader, Search } from 'lucide-react'
-import Image from 'next/image'
+import { Search } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import spinner from '../public/spinner.gif'
 
 type Inputs = {
   searchTerm: string
@@ -10,10 +8,8 @@ type Inputs = {
 
 export default function SearchByNameForm({
   initialDefaultValue,
-  isFetching,
 }: {
   initialDefaultValue: string
-  isFetching: boolean
 }) {
   const {
     register,
@@ -41,7 +37,7 @@ export default function SearchByNameForm({
           className="py-2 px-4 text-sm md:text-base md:py-4 md:px-8 md:min-w-[400px] border-2 max-w-[200px] border-black focus-visible:outline-none"
           {...register('searchTerm', {
             pattern: {
-              value: /^[A-Za-z0-9#!%.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
+              value: /^[A-Za-z0-9#!%*.\-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/,
               message: 'Nieodpowiednia wartość w polu',
             },
           })}
@@ -50,11 +46,7 @@ export default function SearchByNameForm({
           type="submit"
           className="p-4 border-2 border-l-0 border-black bg-sky-600"
         >
-          {!isFetching ? (
-            <Search className="h-6 w-6" />
-          ) : (
-            <Loader className="h-6 w-6" />
-          )}
+          <Search className="h-6 w-6" />
         </button>
       </form>
       {errors.searchTerm && (
