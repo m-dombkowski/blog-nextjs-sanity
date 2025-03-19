@@ -45,24 +45,14 @@ export default function App({
   return (
     <>
       <PostsProvider>
-        {draftMode ? (
-          <AnimatePresence mode="wait">
-            <Navigation />
-            <ScreenSizeContext.Provider value={{ deviceType }}>
-              <PreviewProvider token={token}>
-                <Component key={pageKey} {...pageProps} />
-              </PreviewProvider>
-            </ScreenSizeContext.Provider>
-          </AnimatePresence>
-        ) : (
-          <AnimatePresence mode="wait">
-            <ScreenSizeContext.Provider value={{ deviceType }}>
-              <Navigation />
-              <Component key={pageKey} {...pageProps} />
-            </ScreenSizeContext.Provider>
-          </AnimatePresence>
-        )}
-        {draftMode && <VisualEditing />}{' '}
+        <AnimatePresence mode="wait">
+          <Navigation />
+          <ScreenSizeContext.Provider value={{ deviceType }}>
+            {/* <PreviewProvider token={token}> */}
+            <Component key={pageKey} {...pageProps} />
+            {/* </PreviewProvider> */}
+          </ScreenSizeContext.Provider>
+        </AnimatePresence>
       </PostsProvider>
     </>
   )

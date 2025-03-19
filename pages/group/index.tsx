@@ -75,6 +75,7 @@ export const getStaticProps = async (ctx) => {
   })
 
   const uniqueGroups = [...new Set(groups)]
+  console.log(uniqueGroups)
   return {
     props: {
       draftMode,
