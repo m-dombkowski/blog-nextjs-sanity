@@ -1,22 +1,30 @@
 import { Post } from 'lib/sanity.queries'
-
 import FilteredPosts from './FilteredPosts'
 import NoPostFound from './NoPostFound'
 import PageWrapper from './PageWrapper'
 import SearchByNameForm from './SearchByNameForm'
-import { useEffect, useState } from 'react'
-import { getAllPosts, getClient } from 'lib/sanity.client'
-import { SanityClient } from 'sanity'
+import { useContext, useEffect, useState } from 'react'
+import { PostsContext } from 'lib/context/posts'
 
 export default function FilteredBySearchTerm({
   formatedQuery,
-  isFetching,
-  filteredPosts,
 }: {
   formatedQuery: string
-  isFetching: boolean
-  filteredPosts: Post[]
 }) {
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>(null)
+
+  const { posts } = useContext(PostsContext)
+
+  useEffect(() => {
+    if (posts) {
+      setFilteredPosts(
+        posts?.filter((post) => {
+          return post.title?.toLowerCase().includes(formatedQuery)
+        }),
+      )
+    }
+  }, [formatedQuery, posts])
+
   return (
     <PageWrapper>
       <>
@@ -24,14 +32,12 @@ export default function FilteredBySearchTerm({
           Wyniki wyszukiwania dla{' '}
           <span className="font-bold">&quot;{formatedQuery}&quot;</span>
         </h1>
-        <SearchByNameForm
-          initialDefaultValue={formatedQuery}
-          isFetching={isFetching}
-        />
-        {filteredPosts.length > 0 && !isFetching && (
+        <SearchByNameForm initialDefaultValue={formatedQuery} />
+        {filteredPosts?.length > 0 ? (
           <FilteredPosts filteredPosts={filteredPosts} />
+        ) : (
+          <NoPostFound />
         )}
-        {filteredPosts && filteredPosts.length === 0 && <NoPostFound />}
       </>
     </PageWrapper>
   )
