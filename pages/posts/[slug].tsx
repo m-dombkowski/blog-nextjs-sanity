@@ -71,6 +71,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       token: draftMode ? readToken : '',
       allPosts,
     },
+    revalidate: 60,
   }
 }
 
