@@ -62,7 +62,10 @@ export default function Page(props: PageProps) {
   )
 }
 
-export const getStaticProps = async (ctx) => {
+export const getStaticProps = async (ctx: {
+  draftMode?: false
+  params?: {}
+}) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
@@ -78,14 +81,17 @@ export const getStaticProps = async (ctx) => {
       groups.push(el.toLowerCase())
     })
   })
+  console.log(posts)
+  const uniqueGroups = [...new Set(groups)]
 
+  uniqueGroups.sort()
+  console.log(uniqueGroups)
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
       groups,
       posts,
-      isFetching,
     },
     revalidate: 60,
   }
