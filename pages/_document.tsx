@@ -10,7 +10,7 @@ export default function Document(ctx: { __NEXT_DATA__: { page: string } }) {
 
   return (
     <Html lang="en">
-      <Head />
+      <Head title="Krok w Prawo" />
       <body className={cn(montserrat.className, 'bg-[#fffeec], relative ')}>
         <div className="bg-topography fixed inset-0 opacity-[0.02] -z-10"></div>
         {/* <Navigation page={page} /> */}
