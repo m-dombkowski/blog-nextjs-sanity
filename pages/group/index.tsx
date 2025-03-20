@@ -81,6 +81,7 @@ export const getStaticProps = async (ctx) => {
       token: draftMode ? readToken : '',
       groups,
       isFetching,
+      revalidate: 60,
     },
   }
 }
