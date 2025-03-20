@@ -15,12 +15,13 @@ import Link from 'next/link'
 import { SharedPageProps } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
-  uniqueGroups: string[]
+  groups: string[]
 }
 
 export default function Page(props: PageProps) {
-  const { uniqueGroups } = props
-
+  const { groups } = props
+  const uniqueGroups = [...new Set(groups)]
+  console.log(uniqueGroups)
   uniqueGroups.sort()
 
   return (
@@ -74,13 +75,11 @@ export const getStaticProps = async (ctx) => {
     })
   })
 
-  const uniqueGroups = [...new Set(groups)]
-  console.log(uniqueGroups)
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      uniqueGroups,
+      groups,
       isFetching,
     },
   }
