@@ -45,12 +45,17 @@ export default function App({
   return (
     <>
       draftMode ? (
-      <PreviewProvider token={token}>
-        <Component {...pageProps} />
-        <Suspense>
-          <VisualEditing />
-        </Suspense>
-      </PreviewProvider>
+      <PostsProvider>
+        <AnimatePresence mode="wait">
+          <ScreenSizeContext.Provider value={{ deviceType }}>
+            <Navigation />
+            <Component key={pageKey} {...pageProps} />
+            <Suspense>
+              <VisualEditing />
+            </Suspense>
+          </ScreenSizeContext.Provider>
+        </AnimatePresence>
+      </PostsProvider>
       ) : (
       <PostsProvider>
         <AnimatePresence mode="wait">
