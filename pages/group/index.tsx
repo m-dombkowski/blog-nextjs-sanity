@@ -86,7 +86,7 @@ export const getStaticProps = async (ctx) => {
       groups,
       posts,
       isFetching,
-      revalidate: 60,
     },
+    revalidate: 60,
   }
 }
