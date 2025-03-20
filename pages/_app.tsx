@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import useWindowDimensions from 'hooks/UseWindowDimensions'
 import { Device, ScreenSizeContext } from 'lib/context/screenSize'
 import { PostsProvider } from 'lib/context/posts'
+import Navigation from 'components/Navigation'
 
 export const montserrat = Montserrat({
   subsets: ['latin'],
@@ -36,7 +37,7 @@ export default function App({
   const pageKey = route.asPath
   const { width } = useWindowDimensions()
   const [deviceType, setDeviceType] = useState<Device>(Device.NONE)
-
+  console.log(draftMode)
   useEffect(() => {
     width < 1025 ? setDeviceType(Device.MOBILE) : setDeviceType(Device.DESKTOP)
   }, [width])
@@ -46,6 +47,7 @@ export default function App({
       <PostsProvider>
         {draftMode ? (
           <AnimatePresence mode="wait">
+            <Navigation />
             <ScreenSizeContext.Provider value={{ deviceType }}>
               <PreviewProvider token={token}>
                 <Component key={pageKey} {...pageProps} />
@@ -55,6 +57,7 @@ export default function App({
         ) : (
           <AnimatePresence mode="wait">
             <ScreenSizeContext.Provider value={{ deviceType }}>
+              <Navigation />
               <Component key={pageKey} {...pageProps} />
             </ScreenSizeContext.Provider>
           </AnimatePresence>

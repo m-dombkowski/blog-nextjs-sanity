@@ -13,7 +13,7 @@ export default function Document(ctx: { __NEXT_DATA__: { page: string } }) {
       <Head />
       <body className={cn(montserrat.className, 'bg-[#fffeec], relative ')}>
         <div className="bg-topography fixed inset-0 opacity-[0.02] -z-10"></div>
-        <Navigation page={page} />
+        {/* <Navigation page={page} /> */}
         <Main />
         <Footer />
         <NextScript />
