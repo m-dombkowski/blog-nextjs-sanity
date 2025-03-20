@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import { Montserrat } from 'next/font/google'
 import { useRouter } from 'next/router'
 import topography from 'public/bg-topography.svg'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import useWindowDimensions from 'hooks/UseWindowDimensions'
 import { Device, ScreenSizeContext } from 'lib/context/screenSize'
 import { PostsProvider } from 'lib/context/posts'
@@ -44,6 +44,14 @@ export default function App({
 
   return (
     <>
+      draftMode ? (
+      <PreviewProvider token={token}>
+        <Component {...pageProps} />
+        <Suspense>
+          <VisualEditing />
+        </Suspense>
+      </PreviewProvider>
+      ) : (
       <PostsProvider>
         <AnimatePresence mode="wait">
           <ScreenSizeContext.Provider value={{ deviceType }}>
@@ -51,7 +59,8 @@ export default function App({
             <Component key={pageKey} {...pageProps} />
           </ScreenSizeContext.Provider>
         </AnimatePresence>
-      </PostsProvider>
+      </PostsProvider>{' '}
+      )
     </>
   )
 }
