@@ -37,7 +37,7 @@ export default function App({
   const pageKey = route.asPath
   const { width } = useWindowDimensions()
   const [deviceType, setDeviceType] = useState<Device>(Device.NONE)
-
+  console.log(draftMode)
   useEffect(() => {
     width < 1025 ? setDeviceType(Device.MOBILE) : setDeviceType(Device.DESKTOP)
   }, [width])
@@ -45,14 +45,24 @@ export default function App({
   return (
     <>
       <PostsProvider>
-        <AnimatePresence mode="wait">
-          <Navigation />
-          <ScreenSizeContext.Provider value={{ deviceType }}>
-            {/* <PreviewProvider token={token}> */}
-            <Component key={pageKey} {...pageProps} />
-            {/* </PreviewProvider> */}
-          </ScreenSizeContext.Provider>
-        </AnimatePresence>
+        {draftMode ? (
+          <AnimatePresence mode="wait">
+            <Navigation />
+            <ScreenSizeContext.Provider value={{ deviceType }}>
+              <PreviewProvider token={token}>
+                <Component key={pageKey} {...pageProps} />
+              </PreviewProvider>
+            </ScreenSizeContext.Provider>
+          </AnimatePresence>
+        ) : (
+          <AnimatePresence mode="wait">
+            <ScreenSizeContext.Provider value={{ deviceType }}>
+              <Navigation />
+              <Component key={pageKey} {...pageProps} />
+            </ScreenSizeContext.Provider>
+          </AnimatePresence>
+        )}
+        {draftMode && <VisualEditing />}{' '}
       </PostsProvider>
     </>
   )

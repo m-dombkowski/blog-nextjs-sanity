@@ -38,7 +38,7 @@ export default function PostHeader(
                 >
                   {el.toLowerCase()}
                 </Link>
-                <span className="absolute top-0 right-0 h-full w-4 text-sky-600"></span>
+                {/* <span className="absolute top-0 right-0 h-full w-4 text-sky-600"></span> */}
               </div>
             )
           })}
