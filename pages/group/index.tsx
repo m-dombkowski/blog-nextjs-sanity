@@ -10,19 +10,23 @@ import {
 } from 'components/ui/dialog'
 import { readToken } from 'lib/sanity.api'
 import { getAllPosts, getClient } from 'lib/sanity.client'
+import { Post } from 'lib/sanity.queries'
 
 import Link from 'next/link'
 import { SharedPageProps } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
   groups: string[]
+  posts: Post[]
 }
 
 export default function Page(props: PageProps) {
-  const { groups } = props
+  const { groups, posts } = props
   const uniqueGroups = [...new Set(groups)]
   console.log(uniqueGroups)
   uniqueGroups.sort()
+
+  console.log(posts)
 
   return (
     <PageTransition>
@@ -66,7 +70,7 @@ export const getStaticProps = async (ctx) => {
   const isFetching = posts
 
   let groups: string[] = []
-
+  console.log(posts)
   posts.forEach((post, i) => {
     let grupy = post.group
 
@@ -80,6 +84,7 @@ export const getStaticProps = async (ctx) => {
       draftMode,
       token: draftMode ? readToken : '',
       groups,
+      posts,
       isFetching,
       revalidate: 60,
     },
