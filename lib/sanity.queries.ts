@@ -15,7 +15,7 @@ const postFields = groq`
 export const settingsQuery = groq`*[_type == "settings"][0]`
 
 export const indexQuery = groq`
-*[_type == "post"] | order(date desc, _updatedAt desc) && !(_id in path("drafts.**")) {
+*[_type == "post"] | order(date desc, _updatedAt desc) {
   ${postFields}
 }`
 
