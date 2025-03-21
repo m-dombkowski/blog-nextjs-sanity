@@ -61,6 +61,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       filtered,
       formatedQuery,
     },
+    revalidate: 60,
   }
 }
 
