@@ -44,28 +44,28 @@ export default function App({
 
   return (
     <>
-      draftMode ? (
-      <PostsProvider>
-        <AnimatePresence mode="wait">
-          <ScreenSizeContext.Provider value={{ deviceType }}>
-            <Navigation />
-            <Component key={pageKey} {...pageProps} />
-            <Suspense>
-              <VisualEditing />
-            </Suspense>
-          </ScreenSizeContext.Provider>
-        </AnimatePresence>
-      </PostsProvider>
+      {draftMode ? (
+        <PostsProvider>
+          <AnimatePresence mode="wait">
+            <ScreenSizeContext.Provider value={{ deviceType }}>
+              <Navigation />
+              <Component key={pageKey} {...pageProps} />
+              <Suspense>
+                <VisualEditing />
+              </Suspense>
+            </ScreenSizeContext.Provider>
+          </AnimatePresence>
+        </PostsProvider>
       ) : (
-      <PostsProvider>
-        <AnimatePresence mode="wait">
-          <ScreenSizeContext.Provider value={{ deviceType }}>
-            <Navigation />
-            <Component key={pageKey} {...pageProps} />
-          </ScreenSizeContext.Provider>
-        </AnimatePresence>
-      </PostsProvider>{' '}
-      )
+        <PostsProvider>
+          <AnimatePresence mode="wait">
+            <ScreenSizeContext.Provider value={{ deviceType }}>
+              <Navigation />
+              <Component key={pageKey} {...pageProps} />
+            </ScreenSizeContext.Provider>
+          </AnimatePresence>
+        </PostsProvider>
+      )}
     </>
   )
 }
